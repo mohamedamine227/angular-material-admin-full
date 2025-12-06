@@ -1,0 +1,67 @@
+<app-breadcrumb [path]="routes.FILES_LIST"></app-breadcrumb>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table custom-table">
+            <thead>
+              <tr>
+                <th>Nom du fichier</th>
+                <th>Taille</th>
+                <th>Status</th>
+                <th>Date de modification</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let file of paginatedFiles">
+                <td class="text-capitalize">
+                  <a
+                    [href]="
+                      'http://localhost:5000/uploads/documents/' + file.filename
+                    "
+                    target="_blank"
+                  >
+                    {{ file.filename }}
+                  </a>
+                </td>
+                <td>{{ file.size | number }} bytes</td>
+                <td>
+                  <p style="margin-left: 40px">
+                    {{ file.isActive ? 'Active' : 'Inactive' }}
+                  </p>
+                </td>
+                <td>
+                  <p style="margin-left: 110px">
+                    {{ file.createdAt | date : 'short' }}
+                  </p>
+                </td>
+                <td style="display: flex">
+                  <button mat-button (click)="enableFile(file._id)">
+                    <mat-icon>lock_open</mat-icon>
+                  </button>
+
+                  <button mat-button (click)="deleteFile(file._id)">
+                    <mat-icon>lock</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- 🔵 PAGINATION MATERIAL -->
+          <mat-paginator
+            [length]="filteredFiles.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 25, 50]"
+            (page)="onPageChange($event)"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

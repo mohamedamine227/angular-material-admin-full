@@ -6,6 +6,7 @@ import {CalendarDateFormatter} from 'angular-calendar';
 import {CustomDateFormatter} from '../../service';
 import {routes} from '../../../../consts';
 import {SharedService} from '../../../../shared/services/shared.service';
+import { ApisService } from 'src/app/services/apis.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -29,6 +30,19 @@ export class ProfilePageComponent implements OnInit, OnChanges {
   public m = this.currentDate.getMonth();
   public y = this.currentDate.getFullYear();
   public NOW: Date = new Date();
+
+  user : any = null;
+    userStored : any = localStorage.getItem('userProfile') ? JSON.parse( localStorage.getItem('userProfile') || '{}') : null;
+    constructor(private apis : ApisService,private service: SharedService) { }
+  
+    
+    fetchProfile() {
+      this.apis.fetchProfile().subscribe((data: any) => {
+        this.user = data;
+        localStorage.setItem('userProfile', JSON.stringify(this.user));
+      });
+    }
+  
   public calendarEvents: any[] = [
     {
       id: 1,
@@ -81,10 +95,9 @@ export class ProfilePageComponent implements OnInit, OnChanges {
   ];
   public isDarkMode = false;
 
-  constructor(private service: SharedService) {
-  }
 
   public ngOnInit(): void {
+     this.fetchProfile();
     this.initChart();
 
     this.chart = this.initChart2([91200, 95900, 92300, 96200, 93100, 95500, 94750], colors.PINK);

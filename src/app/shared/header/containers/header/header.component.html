@@ -1,4 +1,4 @@
-<mat-toolbar class="header" color="primary">
+<mat-toolbar class="header" style="background-color: red;">
   <div class="header__title">
     <button
       class="header__title-button"
@@ -13,12 +13,12 @@
         >arrow_back</mat-icon
       >
     </button>
-    <h6 class="header__title-text">Angular Material Admin</h6>
+    <h6 class="header__title-text">Congo Consulat Admin</h6>
   </div>
 
   <div class="header-toolbar">
-    <app-search></app-search>
-    <app-notifications></app-notifications>
+    <!-- <app-search></app-search>
+    <app-notifications></app-notifications> -->
     <app-user [user]="user$ | async" (signOut)="signOut()"></app-user>
   </div>
 </mat-toolbar>

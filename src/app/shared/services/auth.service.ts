@@ -65,16 +65,17 @@ export class AuthService {
 
   loginUser(creds) {
     this.requestLogin();
+
     if (creds.social) {
-      // tslint:disable-next-line
       window.location.href =
         this.config.baseURLApi + `${this.api}/signin/` + creds.social;
     } else if (creds.email.length > 0 && creds.password.length > 0) {
       this.http
-        .post(`${this.api}/signin/local`, creds, { responseType: 'text' })
+        .post(`${this.api}/login`, creds) // <-- JSON RESPONSE (pas text)
         .subscribe(
-          (token: string) => {
-            this.receiveToken(token);
+          (res: any) => {
+            const token = res.data.token; // <-- Récupération du vrai token
+            this.receiveToken(token); // <-- traitement normal
           },
           (err) => {
             this.toastr.error('Something was wrong. Try again');

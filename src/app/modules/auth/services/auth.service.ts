@@ -69,9 +69,9 @@ export class AuthService {
       this.requestLogin();
       if (creds.social) {
         // tslint:disable-next-line
-        window.location.href = this.config.baseURLApi + '/user/signin/' + creds.social;
+        window.location.href = this.config.baseURLApi + '/auth/login/' + creds.social;
       } else if (creds.email.length > 0 && creds.password.length > 0) {
-        this.http.post('/user/signin/local', creds).subscribe((res: any) => {
+        this.http.post('/auth/login', creds).subscribe((res: any) => {
           this.receiveToken(res.token);
         }, err => {
           this.toastr.error(err.error);

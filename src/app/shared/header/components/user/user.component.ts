@@ -1,25 +1,37 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Users } from '../../../models/users.model';
 
 import { routes } from '../../../../consts';
+import { ApisService } from 'src/app/services/apis.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent {
-  @Input() user: Users;
+export class UserComponent implements OnInit {
+  @Input() user: any;
   @Output() signOut: EventEmitter<void> = new EventEmitter<void>();
   public routes: typeof routes = routes;
   public flatlogicEmail: string = 'https://flatlogic.com';
 
+  constructor(private apis: ApisService) {}
+  ngOnInit(): void {
+    this.fetchProfile();
+  }
   public signOutEmit(): void {
     this.signOut.emit();
   }
 
+  fetchProfile() {
+    this.apis.fetchProfile().subscribe((data: any) => {
+      this.user = data?.user || null;
+      console.log('Profile data:', data);
+    });
+  }
+
   firstUserLetter() {
-    return (this.user?.firstName || this.user?.email || 'P')[0].toUpperCase();
+    return null;
   }
 
   avatar() {

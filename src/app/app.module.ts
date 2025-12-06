@@ -41,6 +41,7 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+   // PdfViewerModule,
     MatIconModule,
     MatMenuModule,
     MatRadioModule,

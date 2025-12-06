@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
@@ -25,9 +25,18 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UsersCreateComponent } from './users-create/users-create.component';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { DemandesComponent } from './demandes/demandes.component';
+import { FichiersComponent } from './fichiers/fichiers.component';
+import { CreerFichierComponent } from './creer-fichier/creer-fichier.component';
+import { StatusDialogComponent } from './status-dialog/status-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DemandeDetailsDialogComponent } from './demande-details-dialog/demande-details-dialog.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
-  declarations: [UsersCreateComponent, UsersEditComponent, UsersListComponent],
+  declarations: [UsersCreateComponent, UsersEditComponent, UsersListComponent, DemandesComponent, FichiersComponent, CreerFichierComponent, StatusDialogComponent, DemandeDetailsDialogComponent, FileUploadComponent, UserProfileComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -50,6 +59,9 @@ import { UsersListComponent } from './users-list/users-list.component';
     MatRadioModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    FormsModule,
+    MatDialogModule,
+    //PdfViewerModule
   ],
 })
 export class CrudModule {}

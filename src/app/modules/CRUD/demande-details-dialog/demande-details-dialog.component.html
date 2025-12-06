@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Détails de la candidature</h2>
+
+<mat-dialog-content class="p-3">
+  <p><strong>Candidat :</strong> {{ data.candidate?.firstName }} {{ data.candidate?.lastName }}</p>
+  <p><strong>Email :</strong> {{ data.candidate?.email }}</p>
+  <p><strong>Type :</strong> {{ data.type | titlecase }}</p>
+  <p><strong>Priorité :</strong> {{ data.priority | titlecase }}</p>
+  <p><strong>Description :</strong> {{ data.description }}</p>
+  <p><strong>Status :</strong> {{ data.status | titlecase }}</p>
+  <p><strong>Date de soumission :</strong> {{ data.submittedDate | date:'medium' }}</p>
+
+  <div *ngIf="data.documents?.length">
+    <strong>Documents :</strong>
+    <ul>
+      <li *ngFor="let doc of data.documents">
+        <a [href]="doc.path" target="_blank">{{ doc.name }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="data.notes?.length">
+    <strong>Notes :</strong>
+    <ul>
+      <li *ngFor="let note of data.notes">
+        {{ note.content }} - <em>{{ note.createdBy?.username || 'Utilisateur' }}</em>
+      </li>
+    </ul>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Fermer</button>
+</mat-dialog-actions>

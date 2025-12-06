@@ -1,0 +1,96 @@
+<app-breadcrumb [path]="routes.DEMANDES_LIST"></app-breadcrumb>
+
+<div class="container mt-3">
+  <!-- 🔍 SEARCH BAR -->
+  <div class="">
+    <div class="mt-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Rechercher...</mat-label>
+        <input
+          matInput
+          name="search"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchInput($event)"
+          placeholder="Recherche par type"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- CARD -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <!-- TABLE -->
+      <table class="table custom-table">
+        <thead>
+          <tr>
+            <th>Candidat</th>
+            <th>Type</th>
+            <th>Priorité</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Date de soumission</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let demande of demandes">
+            <td>
+              {{ demande.candidate?.firstName }}
+              {{ demande.candidate?.lastName }}
+            </td>
+
+            <td class="text-capitalize">{{ demande.type }}</td>
+
+            <td class="text-capitalize">
+              <span class="badge bg-secondary px-3 py-2">
+                {{ demande.priority }}
+              </span>
+            </td>
+
+            <td class="description-cell">{{ demande.description }}</td>
+
+            <td>
+              <span class="badge bg-info text-dark px-3 py-2 text-uppercase">
+                {{ demande.status }}
+              </span>
+            </td>
+
+            <td>{{ demande.submittedDate | date : 'mediumDate' }}</td>
+            <td style="display :flex">
+              <!-- Modifier le statut -->
+              <button
+                mat-button
+               
+                class="me-2"
+                (click)="openStatusDialog(demande)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              &nbsp;
+              <!-- Voir les détails -->
+              <button
+                mat-button
+                class=""
+                (click)="openDetailsDialog(demande)"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- PAGINATION -->
+      <mat-paginator
+        [length]="pagination.total"
+        [pageSize]="pagination.limit"
+        [pageIndex]="pagination.page - 1"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

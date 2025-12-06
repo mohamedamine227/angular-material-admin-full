@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Modifier le statut</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Nouveau statut</mat-label>
+    <mat-select [(value)]="selectedStatus">
+      <mat-option *ngFor="let s of statuses" [value]="s">
+        {{ s | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Annuler</button>
+  <button mat-raised-button color="primary" (click)="save()">
+    Enregistrer
+  </button>
+</mat-dialog-actions>

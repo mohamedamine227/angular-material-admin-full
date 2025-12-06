@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApisService } from 'src/app/services/apis.service';
 
 @Component({
   selector: 'app-user-info',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class UserInfoComponent {
 
+    
 }

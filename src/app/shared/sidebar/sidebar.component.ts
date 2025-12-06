@@ -7,110 +7,118 @@ import { ChatPopupComponent } from '../popups/chat-popup/chat-popup.component';
 
 
 const TREE_DATA: any = [
-  {
-    name: 'E-commerce',
-    children: [
-      {name: 'Product Manage', route: routes.MANAGEMENT, active: 'active'},
-      {name: 'Products Grid', route: routes.PRODUCTS, active: 'active'},
-      {name: 'Product Page', route: routes.PRODUCT, active: 'active'},
-    ]
-  },
+  // {
+  //   name: 'E-commerce',
+  //   children: [
+  //     {name: 'Product Manage', route: routes.MANAGEMENT, active: 'active'},
+  //     {name: 'Products Grid', route: routes.PRODUCTS, active: 'active'},
+  //     {name: 'Product Page', route: routes.PRODUCT, active: 'active'},
+  //   ]
+  // },
   {
     name: 'User',
     children: [
-      { name: 'User List', route: routes.Users, active: 'active' },
-      { name: 'User Add', route: routes.Users_CREATE, active: 'active' },
-      { name: 'User Edit', route: routes.Users_EDIT, active: 'active' },
+      { name: 'Consulter les demandes', route: routes.Users, active: 'active' },
+      // { name: 'User Add', route: routes.Users_CREATE, active: 'active' },
+      // { name: 'User Edit', route: routes.Users_EDIT, active: 'active' },
+    ]
+  },
+  {
+    name: 'Fichiers',
+    children: [
+      { name: 'Consulter les fichiers', route: routes.Users, active: 'active' },
+      { name: 'Charger un fichier', route: routes.Users_CREATE, active: 'active' },
+      // { name: 'User Edit', route: routes.Users_EDIT, active: 'active' },
     ]
   }
 ];
 
 const TemplateNode: any = [
-  {
-    name: 'Core',
-    children: [
-      { name: 'Typography', route: routes.TYPOGRAPHY, active: 'active' },
-      { name: 'Colors', route: routes.COLORS, active: 'active' },
-      { name: 'Grid', route: routes.GRID, active: 'active' },
-    ]
-  },
-  {
-    name: 'Tables',
-    children: [
-      { name: 'Tables Basic', route: routes.TABLES_BASIC, active: 'active' },
-      { name: 'Tables Dynamic', route: routes.TABLES_DYNAMIC, active: 'active' },
-    ]
-  },
-  {
-    name: 'UI Elements',
-    children: [
-      { name: 'Icon', route: routes.ICONS, active: 'active' },
-      { name: 'Badge', route: routes.BADGE, active: 'active' },
-      { name: 'Carousel', route: routes.CAROUSEL, active: 'active' },
-      { name: 'Cards', route: routes.CARDS, active: 'active' },
-      { name: 'Modal', route: routes.MODAL, active: 'active' },
-      { name: 'Notification', route: routes.NOTIFICATION, active: 'active' },
-      { name: 'Navbar', route: routes.NAVBAR, active: 'active' },
-      { name: 'Tooltips', route: routes.TOOLTIPS, active: 'active' },
-      { name: 'Tabs', route: routes.TABS, active: 'active' },
-      { name: 'Pagination', route: routes.PAGINATION, active: 'active' },
-      { name: 'Progress', route: routes.PROGRESS, active: 'active' },
-      { name: 'Widget', route: routes.WIDGET, active: 'active' },
-    ]
-  },
-  {
-    name: 'Forms',
-    children: [
-      { name: 'Form Elements', route: routes.FORMS_ELEMENTS, active: 'active' },
-      { name: 'Form Validation', route: routes.FORMS_VALIDATION, active: 'active' },
-    ]
-  },
-  {
-    name: 'Charts',
-    children: [
-      { name: 'Charts Overview', route: routes.OVERVIEW_CHARTS, active: 'active' },
-      { name: 'Line Charts', route: routes.LINE_CHARTS, active: 'active' },
-      { name: 'Bar Charts', route: routes.BAR_CHARTS, active: 'active' },
-      { name: 'Pie Charts', route: routes.PIE_CHARTS, active: 'active' },
-    ]
-  },
-  {
-    name: 'Maps',
-    children: [
-      { name: 'Google Map', route: routes.GOOGLE_MAP, active: 'active' },
-      { name: 'Vector Map', route: routes.VECTOR_MAP, active: 'active' }
-    ]
-  },
-  {
-    name: 'Extra',
-    children: [
-      { name: 'Calendar', route: routes.CALENDAR, active: 'active' },
-      { name: 'Invoice', route: routes.INVOICE, active: 'active' },
-      { name: 'Login Page', route: routes.LOGIN_PAGE, active: 'active' },
-      { name: 'Error Page', route: routes.ERROR_PAGE, active: 'active' },
-      { name: 'Gallery', route: routes.GALLERY, active: 'active' },
-      { name: 'Search Result', route: routes.SEARCH_RESULT, active: 'active' },
-      { name: 'Time Line', route: routes.TIME_LINE, active: 'active' }
-    ]
-  },
-  {
-    name: 'Menu Levels',
-    children: [
-      { name: 'Level 1.1' },
-      {
-        name: 'Level 1.2',
-        children: [
-          { name: 'Level 2.1' },
-          {
-            name: 'Level 2.2',
-            children: [
-              { name: 'Level 3.1'}
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  // {
+  //   name: 'Core',
+  //   children: [
+  //     { name: 'Typography', route: routes.TYPOGRAPHY, active: 'active' },
+  //     { name: 'Colors', route: routes.COLORS, active: 'active' },
+  //     { name: 'Grid', route: routes.GRID, active: 'active' },
+  //   ]
+  // },
+  // {
+  //   name: 'Tables',
+  //   children: [
+  //     { name: 'Tables Basic', route: routes.TABLES_BASIC, active: 'active' },
+  //     { name: 'Tables Dynamic', route: routes.TABLES_DYNAMIC, active: 'active' },
+  //   ]
+  // },
+  // {
+  //   name: 'UI Elements',
+  //   children: [
+  //     { name: 'Icon', route: routes.ICONS, active: 'active' },
+  //     { name: 'Badge', route: routes.BADGE, active: 'active' },
+  //     { name: 'Carousel', route: routes.CAROUSEL, active: 'active' },
+  //     { name: 'Cards', route: routes.CARDS, active: 'active' },
+  //     { name: 'Modal', route: routes.MODAL, active: 'active' },
+  //     { name: 'Notification', route: routes.NOTIFICATION, active: 'active' },
+  //     { name: 'Navbar', route: routes.NAVBAR, active: 'active' },
+  //     { name: 'Tooltips', route: routes.TOOLTIPS, active: 'active' },
+  //     { name: 'Tabs', route: routes.TABS, active: 'active' },
+  //     { name: 'Pagination', route: routes.PAGINATION, active: 'active' },
+  //     { name: 'Progress', route: routes.PROGRESS, active: 'active' },
+  //     { name: 'Widget', route: routes.WIDGET, active: 'active' },
+  //   ]
+  // },
+  // {
+  //   name: 'Forms',
+  //   children: [
+  //     { name: 'Form Elements', route: routes.FORMS_ELEMENTS, active: 'active' },
+  //     { name: 'Form Validation', route: routes.FORMS_VALIDATION, active: 'active' },
+  //   ]
+  // },
+  // {
+  //   name: 'Charts',
+  //   children: [
+  //     { name: 'Charts Overview', route: routes.OVERVIEW_CHARTS, active: 'active' },
+  //     { name: 'Line Charts', route: routes.LINE_CHARTS, active: 'active' },
+  //     { name: 'Bar Charts', route: routes.BAR_CHARTS, active: 'active' },
+  //     { name: 'Pie Charts', route: routes.PIE_CHARTS, active: 'active' },
+  //   ]
+  // },
+  // {
+  //   name: 'Maps',
+  //   children: [
+  //     { name: 'Google Map', route: routes.GOOGLE_MAP, active: 'active' },
+  //     { name: 'Vector Map', route: routes.VECTOR_MAP, active: 'active' }
+  //   ]
+  // },
+  // {
+  //   name: 'Extra',
+  //   children: [
+  //     { name: 'Calendar', route: routes.CALENDAR, active: 'active' },
+  //     { name: 'Invoice', route: routes.INVOICE, active: 'active' },
+  //     { name: 'Login Page', route: routes.LOGIN_PAGE, active: 'active' },
+  //     { name: 'Error Page', route: routes.ERROR_PAGE, active: 'active' },
+  //     { name: 'Gallery', route: routes.GALLERY, active: 'active' },
+  //     { name: 'Search Result', route: routes.SEARCH_RESULT, active: 'active' },
+  //     { name: 'Time Line', route: routes.TIME_LINE, active: 'active' }
+  //   ]
+  // },
+  // {
+  //   name: 'Menu Levels',
+  //   children: [
+  //     { name: 'Level 1.1' },
+  //     {
+  //       name: 'Level 1.2',
+  //       children: [
+  //         { name: 'Level 2.1' },
+  //         {
+  //           name: 'Level 2.2',
+  //           children: [
+  //             { name: 'Level 3.1'}
+  //           ]
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // }
 ];
 
 
