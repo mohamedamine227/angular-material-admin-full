@@ -1,20 +1,46 @@
 @import 'src/app/styles/colors';
 @import 'src/app/styles/variables';
 
+// Footer animations
+@keyframes footerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .footer {
   height: $footer-height;
-  margin-top: 40px;
+  margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    45deg,
+    rgba(206, 17, 38, 0.1),
+    rgba(252, 209, 22, 0.1),
+    rgba(0, 158, 73, 0.1)
+  );
+  border-radius: 15px 15px 15px 15px;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  animation: footerSlideUp 0.8s ease-out;
 
   @media (max-width: $small) {
     flex-direction: column;
-    align-items: start;
+    align-items: center;
+    text-align: center;
   }
 
   &__link {
     display: flex;
     align-items: center;
+    color: rgba(74, 74, 74, 0.8);
+    font-weight: 500;
 
     @media (max-width: $small) {
       margin-bottom: 8px;
@@ -30,25 +56,40 @@
   &__link-item {
     margin-right: 16px;
     text-decoration: none;
+    color: $congo-green;
+    font-weight: 600;
+    transition: all 0.3s ease;
 
     &:hover {
-      text-decoration: underline;
+      color: $congo-red;
+      text-decoration: none;
+      transform: scale(1.05);
     }
   }
 }
 
 .footer-button {
   box-shadow: none;
-  background-color: transparent;
+  background: rgba(206, 17, 38, 0.1);
+  border: 1px solid rgba(206, 17, 38, 0.2);
   width: 46px;
   height: 46px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: $footer-icon-background-color-hover;
+    background: $congo-red;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(206, 17, 38, 0.3);
   }
 }
 
 .mat-icon {
-  color: $footer-icon-color;
+  color: $congo-green;
   padding: 3px 0 0 0;
+  transition: color 0.3s ease;
+}
+
+.footer-button:hover .mat-icon {
+  color: white;
 }

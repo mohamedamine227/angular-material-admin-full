@@ -1,50 +1,65 @@
 <app-breadcrumb [path]="routes.FILES_LIST"></app-breadcrumb>
 
-<div class="container">
+<div class="container page-wrapper">
   <div class="row">
     <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <table class="table custom-table">
+      <div class="card pro-card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="card-title">Gestion des fichiers</h3>
+
+          <div class="search-box">
+            <mat-icon>search</mat-icon>
+            <input type="text" placeholder="Rechercher un fichier..." [(ngModel)]="searchTerm" (input)="filterFiles()" />
+          </div>
+        </div>
+
+        <div class="card-body" style="z-index: 999;">
+          <table style="z-index:999" class="table custom-table pro-table">
             <thead>
               <tr>
                 <th>Nom du fichier</th>
                 <th>Taille</th>
                 <th>Status</th>
                 <th>Date de modification</th>
-                <th>Actions</th>
+                <th class="text-center">Actions</th>
               </tr>
             </thead>
 
             <tbody>
-              <tr *ngFor="let file of paginatedFiles">
-                <td class="text-capitalize">
-                  <a
-                    [href]="
-                      'http://localhost:5000/uploads/documents/' + file.filename
-                    "
-                    target="_blank"
-                  >
-                    {{ file.filename }}
-                  </a>
+              <tr style="z-index: 999" *ngFor="let file of paginatedFiles" class="hover-row">
+                <td class="filename-cell">
+                  <div class="filename-container">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    <a [href]="'http://localhost:5000/uploads/documents/' + file.filename"
+                       target="_blank"
+                       class="filename-link">
+                      {{ file.filename }}
+                    </a>
+                  </div>
                 </td>
+
                 <td>{{ file.size | number }} bytes</td>
+
                 <td>
-                  <p style="margin-left: 40px">
+                  <span class="badge"
+                        [class.badge-active]="file.isActive"
+                        [class.badge-inactive]="!file.isActive">
                     {{ file.isActive ? 'Active' : 'Inactive' }}
-                  </p>
+                  </span>
                 </td>
+
                 <td>
-                  <p style="margin-left: 110px">
-                    {{ file.createdAt | date : 'short' }}
-                  </p>
+                  {{ file.createdAt | date: 'dd/MM/yyyy HH:mm' }}
                 </td>
-                <td style="display: flex">
-                  <button mat-button (click)="enableFile(file._id)">
+
+                <td class="text-center actions-cell">
+                  <button mat-icon-button color="primary" *ngIf="!file.isActive" matTooltip="Activer"
+                          (click)="enableFile(file._id)">
                     <mat-icon>lock_open</mat-icon>
                   </button>
 
-                  <button mat-button (click)="deleteFile(file._id)">
+                  <button mat-icon-button color="warn" *ngIf="file.isActive" matTooltip="Désactiver"
+                          (click)="disableFile(file._id)">
                     <mat-icon>lock</mat-icon>
                   </button>
                 </td>
@@ -52,13 +67,11 @@
             </tbody>
           </table>
 
-          <!-- 🔵 PAGINATION MATERIAL -->
           <mat-paginator
             [length]="filteredFiles.length"
             [pageSize]="pageSize"
             [pageSizeOptions]="[5, 10, 25, 50]"
-            (page)="onPageChange($event)"
-          >
+            (page)="onPageChange($event)">
           </mat-paginator>
         </div>
       </div>

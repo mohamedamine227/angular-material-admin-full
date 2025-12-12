@@ -61,7 +61,7 @@ $blue-theme: ama-light-theme(
     @include mat-expansion-panel;
     @include breadcrumb();
     @include mat-badge();
-    @include sidebar($blue);
+    @include sidebar($green);
     @include footer($blue);
     @include settings($blue);
     @include mat-select;

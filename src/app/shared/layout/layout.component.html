@@ -9,18 +9,19 @@
     [isMenuOpened]="isShowSidebar"
   ></app-header>
 
-  <app-settings-menu-app
+  <!-- <app-settings-menu-app
     (darkMode)="onDarkMode($event)"
     (themeOnBlue)="changeThemeOnBlue()"
     (themeOnPink)="changeThemeOnPink()"
     (themeOnGreen)="changeThemeOnGreen()"
-  ></app-settings-menu-app>
+  ></app-settings-menu-app> -->
 
   <mat-sidenav-container class="layout">
     <mat-sidenav
       #sidenav
       mode="side"
       [(opened)]="isShowSidebar"
+      
       class="layout-sidebar"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"

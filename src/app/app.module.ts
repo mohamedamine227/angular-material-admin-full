@@ -22,6 +22,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorService } from './shared/services/http-interceptor.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -48,6 +49,7 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
     MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [
     {

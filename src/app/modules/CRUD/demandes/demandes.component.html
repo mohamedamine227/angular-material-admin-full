@@ -1,96 +1,97 @@
 <app-breadcrumb [path]="routes.DEMANDES_LIST"></app-breadcrumb>
 
-<div class="container mt-3">
-  <!-- 🔍 SEARCH BAR -->
-  <div class="">
-    <div class="mt-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Rechercher...</mat-label>
-        <input
-          matInput
-          name="search"
-          [(ngModel)]="searchTerm"
-          (ngModelChange)="onSearchInput($event)"
-          placeholder="Recherche par type"
-        />
-      </mat-form-field>
-    </div>
-  </div>
+<div class="container page-wrapper">
+  <div class="row">
+    <div class="col-12">
+      
+      <!-- CARD -->
+      <div class="card pro-card">
 
-  <!-- CARD -->
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <!-- TABLE -->
-      <table class="table custom-table">
-        <thead>
-          <tr>
-            <th>Candidat</th>
-            <th>Type</th>
-            <th>Priorité</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Date de soumission</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        <!-- HEADER WITH TITLE + SEARCH -->
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="card-title">Gestion des demandes</h3>
 
-        <tbody>
-          <tr *ngFor="let demande of demandes">
-            <td>
-              {{ demande.candidate?.firstName }}
-              {{ demande.candidate?.lastName }}
-            </td>
+          <div class="search-box">
+            <mat-icon>search</mat-icon>
+            <input
+              type="text"
+              placeholder="Rechercher par type..."
+              [(ngModel)]="searchTerm"
+              (input)="onSearchInput($event.target.value)"
+            />
+          </div>
+        </div>
 
-            <td class="text-capitalize">{{ demande.type }}</td>
+        <div class="card-body">
+          <!-- TABLE -->
+          <table class="table custom-table pro-table">
+            <thead>
+              <tr>
+                <th>Candidat</th>
+                <th>Type</th>
+                <th>Priorité</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Date de soumission</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
 
-            <td class="text-capitalize">
-              <span class="badge bg-secondary px-3 py-2">
-                {{ demande.priority }}
-              </span>
-            </td>
+            <tbody>
+              <tr *ngFor="let demande of demandes" class="hover-row">
+                <td>
+                  {{ demande.candidate?.firstName }} {{ demande.candidate?.lastName }}
+                </td>
 
-            <td class="description-cell">{{ demande.description }}</td>
+                <td class="text-capitalize">{{ demande.type }}</td>
 
-            <td>
-              <span class="badge bg-info text-dark px-3 py-2 text-uppercase">
-                {{ demande.status }}
-              </span>
-            </td>
+                <td>
+                  <span class="badge badge-priority">
+                    {{ demande.priority }}
+                  </span>
+                </td>
 
-            <td>{{ demande.submittedDate | date : 'mediumDate' }}</td>
-            <td style="display :flex">
-              <!-- Modifier le statut -->
-              <button
-                mat-button
-               
-                class="me-2"
-                (click)="openStatusDialog(demande)"
-              >
-                <mat-icon>edit</mat-icon>
-              </button>
-              &nbsp;
-              <!-- Voir les détails -->
-              <button
-                mat-button
-                class=""
-                (click)="openDetailsDialog(demande)"
-              >
-                <mat-icon>visibility</mat-icon>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                <td class="description-cell">{{ demande.description }}</td>
 
-      <!-- PAGINATION -->
-      <mat-paginator
-        [length]="pagination.total"
-        [pageSize]="pagination.limit"
-        [pageIndex]="pagination.page - 1"
-        [pageSizeOptions]="[5, 10, 20, 50]"
-        (page)="onPageChange($event)"
-      >
-      </mat-paginator>
+                <td>
+                  <span class="badge"
+                    [class.badge-active]="demande.status === 'Approuvée'"
+                    [class.badge-inactive]="demande.status === 'Rejetée'"
+                    [class.badge-pending]="demande.status === 'En attente'"
+                  >
+                    {{ demande.status }}
+                  </span>
+                </td>
+
+                <td>{{ demande.submittedDate | date : 'dd/MM/yyyy' }}</td>
+
+                <td class="text-center actions-cell">
+                  <button mat-icon-button color="primary" matTooltip="Modifier le statut"
+                          (click)="openStatusDialog(demande)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+
+                  <button mat-icon-button color="accent" matTooltip="Voir les détails"
+                          (click)="openDetailsDialog(demande)">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- PAGINATION -->
+          <mat-paginator
+            [length]="pagination.total"
+            [pageSize]="pagination.limit"
+            [pageIndex]="pagination.page - 1"
+            [pageSizeOptions]="[5, 10, 20, 50]"
+            (page)="onPageChange($event)">
+          </mat-paginator>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </div>

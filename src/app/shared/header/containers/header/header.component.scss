@@ -2,39 +2,87 @@
 @import 'src/app/styles/font';
 @import 'src/app/styles/variables';
 
+// ——————————————————————————————
+// DARK / PREMIUM / CONGO ACCENTS
+// ——————————————————————————————
+
 .header {
   display: flex;
   justify-content: space-between;
   position: fixed;
   z-index: 2;
   height: $header-height;
+  width: 100%;
+
+  // DARK glass effect
+  background: rgba(206, 17, 39, 0.905);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.545);
+  box-shadow: 0 4px 16px rgba(255, 0, 0, 0.545);
+
+  // subtle sleek gradient edge using Congo colors
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      $congo-red,
+      $congo-yellow,
+      $congo-green
+    );
+    opacity: 0.55;
+  }
 
   &__title {
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   &__title-button {
-    background-color: $header-button-background-color;
-    box-shadow: $header-button-box-shadow;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    transition: all 0.25s ease;
+    border-radius: 8px;
+    padding: 0 10px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
     &:hover {
-      background-color: $header-button-background-color-hover;
+      background: rgba(255, 255, 255, 0.12);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
     }
 
-    @media (max-width: $small) {
-      margin-top: 0;
+    &:active {
+      transform: scale(0.95);
     }
   }
 
   &__title-button-icon {
-    color: $header-button-font-color;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+
+  &__title-button:hover &__title-button-icon {
+    transform: rotate(180deg);
   }
 
   &__title-text {
-    color: $header-title-font-color;
+    color: white;
     margin-left: 32px;
-    font-weight: $fw-lighter;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.35px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
     @media (max-width: $small) {
       display: none;
@@ -42,7 +90,27 @@
   }
 }
 
+// ——————————————————————————————
+// TOOLBAR
+// ——————————————————————————————
+
 .header-toolbar {
   display: flex;
   align-items: center;
+  gap: 16px;
+  padding-right: 20px;
+
+  ::ng-deep {
+    .mat-icon {
+      color: rgba(255, 255, 255, 0.85);
+      transition: all 0.25s ease;
+
+      &:hover {
+        // subtle Congo color cycling on hover
+        color: $congo-yellow;
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 6px rgba(255, 233, 80, 0.35));
+      }
+    }
+  }
 }

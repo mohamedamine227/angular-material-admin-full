@@ -1,4 +1,9 @@
-import { HttpClient, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,7 +20,12 @@ export class ApisService {
     return this.http.get(`/api/files`);
   }
 
-  uploadFile(file: File, relatedModel: string, relatedId: string, category?: string): Observable<HttpEvent<any>> {
+  uploadFile(
+    file: File,
+    relatedModel: string,
+    relatedId: string,
+    category?: string,
+  ): Observable<HttpEvent<any>> {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('relatedModel', relatedModel);
@@ -25,13 +35,13 @@ export class ApisService {
     }
 
     const headers = new HttpHeaders({
-       'Authorization': `Bearer ${this.token}` 
+      Authorization: `Bearer ${this.token}`,
     });
 
     return this.http.post<any>(`/api/files/upload`, formData, {
       headers,
       reportProgress: true,
-      observe: 'events'
+      observe: 'events',
     });
   }
   deleteFile(fileId: any) {
@@ -39,7 +49,11 @@ export class ApisService {
   }
 
   enableFile(fileId: any, isActive: boolean) {
-    return this.http.put(`/api/files/${fileId}/enable`, {isActive});
+    return this.http.put(`/api/files/${fileId}/enable`, { isActive });
+  }
+
+  disableFile(fileId: any, isActive: boolean) {
+    return this.http.put(`/api/files/${fileId}/disable`, { isActive });
   }
 
   getDemandes(
@@ -79,8 +93,8 @@ export class ApisService {
   }
 
   fetchProfile() {
-     const headers = new HttpHeaders({
-       'Authorization': `Bearer ${this.token}` 
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
     });
     return this.http.get(`/api/auth/me`, { headers });
   }

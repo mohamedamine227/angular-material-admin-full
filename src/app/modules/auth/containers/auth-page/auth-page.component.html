@@ -1,24 +1,35 @@
-<body style="background-color: rgb(4, 4, 31);">
-  <div class="auth-page">
+<div class="auth-page">
+  <!-- Animated wave effects -->
+  <div class="wave"></div>
+  <div class="wave"></div>
+
+  <!-- Floating geometric shapes -->
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+
   <div class="auth-page__content-block">
     <div class="auth-page__content-wrapper">
-        
-          <h4 class="auth-page__group-title">Bienvenue!</h4>
-        
+      <!-- Logo Section -->
+      <div class="auth-page__logo-section">
+        <img
+          src="assets/favicon.png"
+          alt="Logo"
+          style="border-radius: 15px;"
+          class="auth-page__logo-image"
+        />
+      </div>
 
-          <app-login-form
-            (sendLoginForm)="sendLoginForm($event)"
-          ></app-login-form>
-        
-       
+      <h4 class="auth-page__group-title">Bienvenue!</h4>
 
-      <p class="auth-page__footer-title">
-        © 2025-{{ todayDate | year }}
-        <a href="https://flatlogic.com">...</a>, LLC. All rights reserved.
+      <app-login-form (sendLoginForm)="sendLoginForm($event)"></app-login-form>
+
+      <p style="text-align: center;" class="auth-page__footer-title">
+        © 2025 Metavoria – Société de développement. Consulat Général de la
+        République du Congo Brazzaville en Tunisie.
+        <br />
+        Tous droits réservés.
       </p>
     </div>
   </div>
- 
 </div>
-
-</body>

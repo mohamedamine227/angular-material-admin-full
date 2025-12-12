@@ -7,4 +7,8 @@ export enum colors {
   GREEN = '#3CD4A0',
   VIOLET = '#9013FE',
   GREY = '#E0E0E0',
+  // Congo flag colors
+  CONGO_RED = '#CE1126',
+  CONGO_YELLOW = '#FCD116',
+  CONGO_GREEN = '#009E49',
 }

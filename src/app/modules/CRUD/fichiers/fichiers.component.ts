@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { forkJoin } from 'rxjs';
 import { routes } from 'src/app/consts';
 import { ApisService } from 'src/app/services/apis.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fichiers',
@@ -22,7 +24,7 @@ export class FichiersComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private apis: ApisService) {}
+  constructor(private apis: ApisService, private snack: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadFiles();
@@ -69,15 +71,43 @@ export class FichiersComponent implements OnInit {
   }
 
   enableFile(fileId: string) {
-    // Mettre tous les fichiers en isActive = false
-    this.files.forEach((file) => {
-      if (file.isActive) {
-        this.apis.enableFile(file._id, false).subscribe();
-      }
-    });
+    // fichier que l’utilisateur veut activer
+    const file = this.files.find((f) => f._id === fileId);
 
-    // Activer seulement celui choisi
+    // Vérifier si un autre fichier est déjà actif
+    const alreadyActive = this.files.find((f) => f.isActive);
+
+    // Si un autre fichier est actif ET ce n'est pas celui qu'on clique
+    if (alreadyActive && alreadyActive._id !== fileId) {
+      this.snack.open(
+        'Un autre fichier est déjà actif. Désactivez-le avant d’en activer un autre.',
+        'OK',
+        { duration: 3000, panelClass: ['info-snackbar'] },
+      );
+      return;
+    }
+
+    // Si le fichier est déjà actif → rien à faire
+    if (file?.isActive) {
+      this.snack.open('Ce fichier est déjà actif.', 'OK', {
+        duration: 3000,
+        panelClass: ['info-snackbar'],
+      });
+      return;
+    }
+
+    // Sinon → on peut activer
     this.apis.enableFile(fileId, true).subscribe(() => {
+      this.snack.open('Fichier activé avec succès.', 'Fermer', {
+        duration: 3000,
+        panelClass: ['success-snackbar'],
+      });
+      this.loadFiles();
+    });
+  }
+
+  disableFile(fileId: string) {
+    this.apis.disableFile(fileId, false).subscribe(() => {
       this.loadFiles();
     });
   }
